@@ -9,30 +9,30 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
-        fields = ('groupName','description','picture','tags')
+        fields = ('id','groupName','description','picture','tags')
 
 class GroupUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group_User
-        fields = ('user_id','group_id')
+        fields = ('id','user_id','group_id')
 
 class ChatsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Chats
-        fields = ('sender','recipient','message','timestamp')
+        fields = ('id','sender','recipient','message','timestamp')
 
 class ResponseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Responses
-        fields = ('post_id','response_id','time','upvotes','body')
+        fields = ('id','post_id','response_id','time','upvotes','body')
 
 class FriendsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Friends
-        fields = ('user_id','friend_id','status')
+        fields = ('id','user_id','friend_id','status')
 
 class PostsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Posts
-        fields = ('group_id','author','upvotes','title','time','body')
+        fields = ('id','group_id','author','upvotes','title','time','body')
 

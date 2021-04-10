@@ -34,5 +34,5 @@ class FriendsSerializer(serializers.HyperlinkedModelSerializer):
 class PostsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Posts
-        fields = ('group_id','author','upvotes','title','time','body','picture')
+        fields = ('group_id','author','upvotes','title','time','body')
 

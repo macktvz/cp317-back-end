@@ -1,1 +1,1 @@
-web: gunicorn studyspace.wsgi --log-file -
+web: gunicorn myproject.wsgi --log-file -

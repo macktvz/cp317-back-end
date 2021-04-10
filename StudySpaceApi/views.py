@@ -80,6 +80,11 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
     @action(detail=False)
+    def tags(self, request,*args, **kwargs):
+        group_id = request.GET.get('group_id')
+        return Response(self.queryset.filter(id=group_id).values_list('tags',flat=True))
+
+    @action(detail=False)
     def topGroups(self, request,*args, **kwargs):
         user_id = request.GET.get('id')
         user = UserViewSet.queryset.get(id=user_id)

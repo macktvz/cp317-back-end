@@ -33,6 +33,7 @@ class Group(models.Model):
     tags = models.CharField(max_length=50) 
     slug = models.CharField(max_length=30)
 
+
 class Posts(models.Model):
     group_id = models.ForeignKey(Group, on_delete=models.CASCADE, related_name="group_id")
     author = models.ForeignKey(User, on_delete=models.CASCADE)

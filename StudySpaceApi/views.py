@@ -82,7 +82,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     @action(detail=False)
     def tags(self, request,*args, **kwargs):
         group_id = request.GET.get('group_id')
-        return Response(self.queryset.filter(id=group_id).values_list('tags',flat=True))
+        return Response(self.queryset.filter(id=group_id).values_list('tags',flat=True).split(','))
 
     @action(detail=False)
     def topGroups(self, request,*args, **kwargs):

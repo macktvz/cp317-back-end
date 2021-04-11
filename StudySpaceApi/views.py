@@ -85,7 +85,7 @@ class GroupViewSet(viewsets.ModelViewSet):
         group_id = request.GET.get('group_id')
         pic = self.queryset.get(id=group_id).picture
         
-        return mark_safe('<img src="{url}" width="{width}" height={height} />'.format(
+        return Response('<img src="{url}" width="{width}" height={height} />'.format(
             url = "app/group/mine.png",
             width=pic.width,
             height=pic.height,

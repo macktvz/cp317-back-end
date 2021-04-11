@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from itertools import chain
-from django.utils.html import mark_safe
+from django.http import HttpResponse
 # Create your views here.
 
 
@@ -85,7 +85,7 @@ class GroupViewSet(viewsets.ModelViewSet):
         group_id = request.GET.get('group_id')
         pic = self.queryset.get(id=group_id).picture
         
-        return Response('<img src="{url}" width="{width}" height={height} />'.format(
+        return HttpResponse('<img src="{url}" width="{width}" height={height} />'.format(
             url = "app/group/mine.png",
             width=pic.width,
             height=pic.height,

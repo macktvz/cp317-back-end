@@ -82,13 +82,13 @@ class GroupViewSet(viewsets.ModelViewSet):
 
     @action(detail=False)
     def picture(self, request,*args, renderer=None, **kwargs):
-        group_id = request.GET.get('group_id')
-        pic = self.queryset.get(id=group_id).picture
+        # group_id = request.GET.get('group_id')
+        # pic = self.queryset.get(id=group_id).picture
         
         return HttpResponse('<img src="{url}" width="{width}" height={height} />'.format(
             url = "app/group/mine.png",
-            width=pic.width,
-            height=pic.height,
+            width=200,
+            height=200,
             ))
 
 

@@ -82,7 +82,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     @action(detail=False)
     def picture(self, request,*args, renderer=None, **kwargs):
         group_id = request.GET.get('group_id')
-        pic = queryset.get(id=group_id).picture
+        pic = self.queryset.get(id=group_id).picture
         
         return mark_safe('<img src="{url}" width="{width}" height={height} />'.format(
             url = pic.url,

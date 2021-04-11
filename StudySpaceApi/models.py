@@ -12,7 +12,7 @@ class User(models.Model):
     interest2 = models.CharField(max_length=20)
     interest3 = models.CharField(max_length=20)
     program = models.CharField(max_length=20)
-    picture = models.ImageField(upload_to="user", null=True, blank=True)
+    picture = models.ImageField(upload_to="static", null=True, blank=True)
     online_status = models.BooleanField()
     
     def __str__(self):
@@ -29,7 +29,7 @@ class Friends(models.Model):
 class Group(models.Model):
     groupName = models.CharField(max_length=20)
     description = models.CharField(max_length=300)
-    picture = models.ImageField(upload_to="group", null=True, blank=True)
+    picture = models.ImageField(upload_to="static", null=True, blank=True)
     tags = models.CharField(max_length=50) 
     slug = models.CharField(max_length=30)
 
@@ -45,6 +45,7 @@ class Posts(models.Model):
     slug = models.CharField(max_length=30)
 
 class Responses(models.Model):
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
     post_id = models.ForeignKey(Posts, on_delete=models.CASCADE)
     response_id = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
     upvotes = models.IntegerField()

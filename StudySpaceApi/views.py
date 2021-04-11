@@ -87,8 +87,8 @@ class GroupViewSet(viewsets.ModelViewSet):
         
         return HttpResponse('<img src="{url}" width="{width}" height={height} />'.format(
             url = "app/group/mine.png",
-            width=200,
-            height=200,
+            width=544,
+            height=486,
             ))
 
 

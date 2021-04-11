@@ -80,6 +80,18 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
     @action(detail=False)
+    def picture(self, request,*args, renderer=None, **kwargs):
+        group_id = request.GET.get('group_id')
+        pic = queryset.get(id=group_id).picture
+        
+        return mark_safe('<img src="{url}" width="{width}" height={height} />'.format(
+            url = pic.url,
+            width=pic.width,
+            height=pic.height,
+            ))
+
+
+    @action(detail=False)
     def tags(self, request,*args, **kwargs):
         group_id = request.GET.get('group_id')
         return Response(self.queryset.filter(id=group_id).values_list('tags',flat=True)[0].split(','))

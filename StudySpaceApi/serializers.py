@@ -25,6 +25,7 @@ class ResponseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Responses
         fields = ('id','post_id','response_id','time','upvotes','body')
+        depth = 2
 
 class FriendsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -35,4 +36,5 @@ class PostsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Posts
         fields = ('id','group_id','author','upvotes','title','time','body')
+        depth = 2
 

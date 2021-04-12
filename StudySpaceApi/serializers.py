@@ -11,7 +11,11 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ('id','groupName','description','picture','tags')
 
-class GroupUserSerializer(serializers.HyperlinkedModelSerializer):
+class GroupUserSerializer(serializers.ModelSerializer):
+    user_id = serializers.HyperlinkedRelatedField(
+    read_only=True, view_name='user-detail')
+    group_id = serializers.HyperlinkedRelatedField(
+    read_only=True, view_name='group-detail')
     class Meta:
         model = Group_User
         fields = ('id','user_id','group_id')

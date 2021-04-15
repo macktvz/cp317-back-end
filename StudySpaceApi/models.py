@@ -39,7 +39,7 @@ class Posts(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     upvotes = models.IntegerField()
     title = models.CharField(max_length=30)
-    time = models.DateTimeField()
+    time = models.DateTimeField(null=True, blank=True)
     body = models.TextField()
     # picture = models.ImageField(upload_to="posts", null=True)
     slug = models.CharField(max_length=30)

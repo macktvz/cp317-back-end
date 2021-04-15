@@ -48,7 +48,7 @@ class RF(serializers.PrimaryKeyRelatedField):
             return self.serializer(instance, context=self.context).data
         return super().to_representation(instance)
 
-class PostsSerializer(serializers.HyperlinkedModelSerializer):
+class PostsSerializer(serializers.ModelSerializer):
     group_id = RF(queryset=Group.objects.all(), serializer=GroupSerializer)
     author = RF(queryset=User.objects.all(), serializer=UserSerializer)
 

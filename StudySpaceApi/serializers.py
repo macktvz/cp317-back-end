@@ -32,15 +32,6 @@ class FriendsSerializer(serializers.HyperlinkedModelSerializer):
         model = Friends
         fields = ('id','user_id','friend_id','status')
 
-class PostsSerializer(serializers.HyperlinkedModelSerializer):
-    group_id = RF(queryset=Group.objects.all(), serializer=GroupSerializer)
-    author = RF(queryset=User.objects.all(), serializer=UserSerializer)
-
-    class Meta:
-        model = Posts
-        fields = ('id','group_id','author','upvotes','title','time','body','slug')
-        
-
 class RF(serializers.PrimaryKeyRelatedField):
     def __init__(self, **kwargs):
         self.serializer = kwargs.pop('serializer', None)
@@ -56,4 +47,15 @@ class RF(serializers.PrimaryKeyRelatedField):
         if self.serializer:
             return self.serializer(instance, context=self.context).data
         return super().to_representation(instance)
+
+class PostsSerializer(serializers.HyperlinkedModelSerializer):
+    group_id = RF(queryset=Group.objects.all(), serializer=GroupSerializer)
+    author = RF(queryset=User.objects.all(), serializer=UserSerializer)
+
+    class Meta:
+        model = Posts
+        fields = ('id','group_id','author','upvotes','title','time','body','slug')
+        
+
+
 

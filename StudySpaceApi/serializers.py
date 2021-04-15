@@ -32,29 +32,32 @@ class FriendsSerializer(serializers.HyperlinkedModelSerializer):
         model = Friends
         fields = ('id','user_id','friend_id','status')
 
-class RF(serializers.PrimaryKeyRelatedField):
-    def __init__(self, **kwargs):
-        self.serializer = kwargs.pop('serializer', None)
-        if self.serializer is not None and not issubclass(self.serializer, serializers.Serializer):
-            raise TypeError('"serializer" is not a valid serializer class')
+# class RF(serializers.PrimaryKeyRelatedField):
+#     def __init__(self, **kwargs):
+#         self.serializer = kwargs.pop('serializer', None)
+#         if self.serializer is not None and not issubclass(self.serializer, serializers.Serializer):
+#             raise TypeError('"serializer" is not a valid serializer class')
 
-        super().__init__(**kwargs)
+#         super().__init__(**kwargs)
 
-    def use_pk_only_optimization(self):
-        return False if self.serializer else True
+#     def use_pk_only_optimization(self):
+#         return False if self.serializer else True
 
-    def to_representation(self, instance):
-        if self.serializer:
-            return self.serializer(instance, context=self.context).data
-        return super().to_representation(instance)
+#     def to_representation(self, instance):
+#         if self.serializer:
+#             return self.serializer(instance, context=self.context).data
+#         return super().to_representation(instance)
 
-class PostsSerializer(serializers.ModelSerializer):
-    group_id = RF(queryset=Group.objects.all(), serializer=GroupSerializer)
-    author = RF(queryset=User.objects.all(), serializer=UserSerializer)
-
+class PostsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Posts
         fields = '__all__'
+
+    def to_representation(self,instance):
+        response = super().to_representation(instance)
+        response['author'] = UserSerializer(instance.author).data
+        response['group_id'] = GroupSerializer(instance.group_id).data
+        return response
         
 
 

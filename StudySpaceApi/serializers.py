@@ -9,7 +9,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
-        fields = ('id','groupName','description','picture','tags')
+        fields = ('id','groupName','description','picture','tags','slug')
 
 class GroupUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -35,6 +35,6 @@ class FriendsSerializer(serializers.HyperlinkedModelSerializer):
 class PostsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Posts
-        fields = ('id','group_id','author','upvotes','title','time','body')
+        fields = ('id','group_id','author','upvotes','title','time','body','slug')
         depth = 2
 

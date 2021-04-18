@@ -31,8 +31,8 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'studyspace-backend.herokuapp.com','study-space.vercel.app/']
-
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'studyspace-backend.herokuapp.com','study-space.vercel.app/']
 
 # Application definition
 
